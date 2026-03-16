@@ -1,31 +1,62 @@
-import { Search, Bell } from "lucide-react";
+import { Search, Bell, Moon, Sun, ChevronRight } from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import avatarImg from "@/assets/avatar-azzahra.jpg";
+import { Button } from "@/components/ui/button";
+import { useUIStore } from "@/store/useUIStore";
+import {
+  DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
-export function TopNavbar() {
+interface TopNavbarProps {
+  breadcrumbs?: { label: string; href?: string }[];
+}
+
+export function TopNavbar({ breadcrumbs = [{ label: 'Dashboard' }] }: TopNavbarProps) {
+  const { theme, toggleTheme } = useUIStore();
+
   return (
-    <header className="h-16 border-b border-border bg-card flex items-center justify-between px-6 flex-shrink-0">
-      <div className="flex items-center gap-4">
+    <header className="h-14 border-b border-border bg-card flex items-center justify-between px-4 flex-shrink-0">
+      <div className="flex items-center gap-3">
         <SidebarTrigger className="text-muted-foreground" />
-        <div className="relative hidden sm:block">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-          <input
-            type="text"
-            placeholder="Search courses, reports..."
-            className="pl-10 pr-4 py-2 w-72 rounded-lg bg-secondary border-none text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/30 transition-shadow"
-          />
-        </div>
+        <nav className="hidden sm:flex items-center gap-1 text-sm text-muted-foreground">
+          {breadcrumbs.map((b, i) => (
+            <span key={i} className="flex items-center gap-1">
+              {i > 0 && <ChevronRight className="w-3.5 h-3.5" />}
+              <span className={i === breadcrumbs.length - 1 ? 'text-foreground font-medium' : ''}>
+                {b.label}
+              </span>
+            </span>
+          ))}
+        </nav>
       </div>
-      <div className="flex items-center gap-4">
-        <button className="relative p-2 rounded-lg hover:bg-secondary transition-colors duration-150">
-          <Bell className="w-5 h-5 text-muted-foreground" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full" />
-        </button>
-        <img
-          src={avatarImg}
-          alt="Azzahra"
-          className="w-9 h-9 rounded-full object-cover ring-2 ring-border"
-        />
+      <div className="flex items-center gap-2">
+        <Button variant="ghost" size="icon" onClick={toggleTheme} className="text-muted-foreground">
+          {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+        </Button>
+        <Button variant="ghost" size="icon" className="relative text-muted-foreground">
+          <Bell className="w-4 h-4" />
+          <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-destructive rounded-full" />
+        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon" className="rounded-full">
+              <Avatar className="w-8 h-8">
+                <AvatarFallback className="bg-primary/10 text-primary text-xs font-semibold">AD</AvatarFallback>
+              </Avatar>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-48">
+            <div className="px-3 py-2">
+              <p className="text-sm font-medium text-foreground">Admin User</p>
+              <p className="text-xs text-muted-foreground">admin@invenpro.com</p>
+            </div>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem className="text-destructive">Log out</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );
