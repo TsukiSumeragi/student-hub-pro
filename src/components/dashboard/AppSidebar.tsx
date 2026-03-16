@@ -1,20 +1,17 @@
-import { User, BookOpen, BarChart3, Settings, GraduationCap } from "lucide-react";
+import {
+  Package, LayoutDashboard, FolderOpen, BarChart3, Settings, Box,
+} from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
+  Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel,
+  SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar,
 } from "@/components/ui/sidebar";
 
 const navItems = [
-  { title: "My Profile", url: "/", icon: User },
-  { title: "Available Courses", url: "/courses", icon: BookOpen },
-  { title: "Academic Report", url: "/report", icon: BarChart3 },
+  { title: "Dashboard", url: "/", icon: LayoutDashboard },
+  { title: "Products", url: "/products", icon: Package },
+  { title: "Categories", url: "/categories", icon: FolderOpen },
+  { title: "Reports", url: "/reports", icon: BarChart3 },
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 
@@ -25,18 +22,21 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon" className="border-r border-border">
       <SidebarContent>
-        <div className="px-6 py-6 flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
-            <GraduationCap className="w-5 h-5 text-primary-foreground" />
+        <div className="px-5 py-5 flex items-center gap-3">
+          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
+            <Box className="w-4 h-4 text-primary-foreground" />
           </div>
           {!collapsed && (
-            <span className="text-lg font-semibold text-foreground tracking-tight">
-              Azzahra Academy
+            <span className="text-base font-semibold text-foreground tracking-tight">
+              InvenPro
             </span>
           )}
         </div>
 
         <SidebarGroup>
+          <SidebarGroupLabel className="text-[11px] uppercase tracking-wider text-muted-foreground/70 px-5">
+            Menu
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {navItems.map((item) => (
@@ -45,10 +45,10 @@ export function AppSidebar() {
                     <NavLink
                       to={item.url}
                       end
-                      className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-muted-foreground transition-colors duration-150 hover:bg-secondary hover:text-foreground"
+                      className="flex items-center gap-3 px-4 py-2 rounded-lg text-muted-foreground text-sm transition-colors duration-150 hover:bg-accent hover:text-foreground"
                       activeClassName="bg-primary/10 text-primary font-medium"
                     >
-                      <item.icon className="w-5 h-5 flex-shrink-0" />
+                      <item.icon className="w-[18px] h-[18px] flex-shrink-0" />
                       {!collapsed && <span>{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
