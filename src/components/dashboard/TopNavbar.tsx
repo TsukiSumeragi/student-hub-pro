@@ -1,4 +1,4 @@
-import { Search, Bell, Moon, Sun, ChevronRight } from "lucide-react";
+import { Bell, Moon, Sun, ChevronRight } from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { useUIStore } from "@/store/useUIStore";
@@ -41,14 +41,14 @@ export function TopNavbar({ breadcrumbs = [{ label: 'Dashboard' }] }: TopNavbarP
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon" className="rounded-full">
               <Avatar className="w-8 h-8">
-                <AvatarFallback className="bg-primary/10 text-primary text-xs font-semibold">AD</AvatarFallback>
+                <AvatarFallback className="bg-primary/10 text-primary text-xs font-semibold">AZ</AvatarFallback>
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-48">
             <div className="px-3 py-2">
-              <p className="text-sm font-medium text-foreground">Admin User</p>
-              <p className="text-xs text-muted-foreground">admin@invenpro.com</p>
+              <p className="text-sm font-medium text-foreground">Azzahra</p>
+              <p className="text-xs text-muted-foreground">azzahraasabri@gmail.com</p>
             </div>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Profile</DropdownMenuItem>
