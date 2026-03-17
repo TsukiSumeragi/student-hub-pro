@@ -1,5 +1,5 @@
 import {
-  Package, LayoutDashboard, FolderOpen, BarChart3, Settings, Box,
+  LayoutDashboard, BookOpen, Library, User, Box,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import {
@@ -9,10 +9,9 @@ import {
 
 const navItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
-  { title: "Products", url: "/products", icon: Package },
-  { title: "Categories", url: "/categories", icon: FolderOpen },
-  { title: "Reports", url: "/reports", icon: BarChart3 },
-  { title: "Settings", url: "/settings", icon: Settings },
+  { title: "My Courses", url: "/my-courses", icon: BookOpen },
+  { title: "Course Catalog", url: "/catalog", icon: Library },
+  { title: "Profile", url: "/profile", icon: User },
 ];
 
 export function AppSidebar() {
@@ -28,7 +27,7 @@ export function AppSidebar() {
           </div>
           {!collapsed && (
             <span className="text-base font-semibold text-foreground tracking-tight">
-              InvenPro
+              Azzahra Academy
             </span>
           )}
         </div>
