@@ -8,7 +8,7 @@ import { useCourseStore } from "@/store/useCourseStore";
 
 const MyCourses = () => {
   const theme = useUIStore((s) => s.theme);
-  const courses = useCourseStore((s) => s.courses.filter((c) => c.enrolled));
+  const courses = useCourseStore((s) => s.courses).filter((c) => c.enrolled);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");

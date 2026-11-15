@@ -2,7 +2,7 @@ import { CourseCard } from "./CourseCard";
 import { useCourseStore } from "@/store/useCourseStore";
 
 export function CoursesSection() {
-  const courses = useCourseStore((s) => s.courses.filter((c) => c.enrolled));
+  const courses = useCourseStore((s) => s.courses).filter((c) => c.enrolled);
 
   return (
     <section>

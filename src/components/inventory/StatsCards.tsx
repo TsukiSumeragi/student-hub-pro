@@ -4,7 +4,7 @@ import { useInventoryStore } from "@/store/useInventoryStore";
 import { getStockStatus } from "@/types/inventory";
 
 export function StatsCards() {
-  const products = useInventoryStore(s => s.products.filter(p => !p.deleted_at));
+  const products = useInventoryStore(s => s.products).filter(p => !p.deleted_at);
 
   const totalProducts = products.length;
   const lowStock = products.filter(p => getStockStatus(p.stock_quantity) === 'low_stock').length;
